@@ -49,9 +49,6 @@ const TodoList = () => {
             <Form onSubmit={handleSubmit}>
                 <InputGroup className='input--group'>
                     <Input onChange={handleInput} value={inputVal} placeholder='Please enter the note' />
-                    <InputGroup.Button>
-                        <Icon icon="send-o" />
-                    </InputGroup.Button>
                 </InputGroup>
             </Form>
             

@@ -4,13 +4,13 @@ import React, { useState, useContext } from 'react';
 import { Form, InputGroup, Input, Icon, List, Divider } from 'rsuite';
 
 // Custom Components
+import FormItem from './FormItem';
 import ListItems from './ListItems';
 
 import ListContext from '../ListContext';
 
 const TodoList = () => {
     const { data, setData } = useContext(ListContext);
-    const [inputVal, setInputVal] = useState<string>('');
 
     const generateId = () : number => {
         let maxID = 0;
@@ -22,25 +22,11 @@ const TodoList = () => {
         return maxID+1;
     }
 
-    const handleSubmit = () => {
-        if(inputVal.length !== 0)
-            setData([
-                ...data,
-                { 'id': generateId(), 'title': inputVal, 'checked': false },
-            ])
-        
-        setInputVal('');
-    };
-
-    const handleInput = (value: string) => setInputVal(value);
+    
 
     return (
         <>
-            <Form onSubmit={handleSubmit}>
-                <InputGroup className='input--group'>
-                    <Input onChange={handleInput} value={inputVal} placeholder='Please enter the note' />
-                </InputGroup>
-            </Form>
+            <FormItem generateId={generateId} />
             
             <List className='list-body' hover>
                 <ListItems checked={false} />

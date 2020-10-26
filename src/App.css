@@ -28,6 +28,7 @@
 
 .wrapper .list-item {
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .wrapper .list-item.done {

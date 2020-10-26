@@ -1,21 +1,35 @@
-import React from 'react';
-import { List, Checkbox } from 'rsuite';
+import React, { useContext } from 'react';
+import { List, Checkbox, FlexboxGrid, Icon, IconButton } from 'rsuite';
 
-import LocaleContext from '../LocaleContext';
+import ListContext from '../ListContext';
 
-const ListItems = ({handleClick, checked}: any) => {
+const ListItems = ({checked}: any) => {
     let classList = 'list-item' + (checked ? ' done' : '');
+
+    const {data, setData} = useContext( ListContext );
     
+    const handleCheck = (idx: number) : void => {
+        setData([
+            {id: data[idx].id, title: data[idx].title, checked: !data[idx].checked},
+            ...data.filter((val, index) => index != idx)
+        ]);
+    };
+
+    const deleteListItem = () => {};
+
     return (
-        <LocaleContext.Consumer>
-            {(data: any) => data.map((item: any, index: number) => (
+        <ListContext.Consumer>
+            {({data}: any) => data.map((item: any, index: number) => (
                 checked === item.checked ? (
-                    <List.Item className={classList} key={item.id} index={item.id}>
-                        {<Checkbox onChange={() => handleClick(index)} defaultChecked={checked}>{item.title}</Checkbox>}
-                    </List.Item>
+                        <List.Item className={classList} key={item.id} index={item.id}>
+                            <FlexboxGrid align='middle' justify='space-between'>
+                                <Checkbox onChange={() => handleCheck(index)} defaultChecked={checked}>{item.title}</Checkbox>
+                                <IconButton size='xs' icon={<Icon icon='close' />}/>
+                            </FlexboxGrid>
+                        </List.Item>                    
                 ) : ''
             ))}
-        </LocaleContext.Consumer>        
+        </ListContext.Consumer>        
     )
 }
 

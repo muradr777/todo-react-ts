@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // RSuite Components
 import { Form, InputGroup, Input, Icon, List, Divider } from 'rsuite';
@@ -6,14 +6,11 @@ import { Form, InputGroup, Input, Icon, List, Divider } from 'rsuite';
 // Custom Components
 import ListItems from './ListItems';
 
+import ListContext from '../ListContext';
+
 const TodoList = () => {
+    const { data, setData } = useContext(ListContext);
     const [inputVal, setInputVal] = useState<string>('');
-    const [data, setData] = useState<{id: number, title: string, checked: boolean}[]>([
-        {'id': 0, 'title': 'Roses are red', 'checked': false},
-        {'id': 1, 'title': 'Violets are blue', 'checked': true},
-        {'id': 2, 'title': 'Sugar is sweet', 'checked': false},
-        {'id': 3, 'title': 'And so are you', 'checked': true}
-    ]);
 
     const generateId = () : number => {
         let maxID = 0;
@@ -36,13 +33,6 @@ const TodoList = () => {
     };
 
     const handleInput = (value: string) => setInputVal(value);
-
-    const handleCheck = (idx: number) : void => {
-        setData([
-            {id: data[idx].id, title: data[idx].title, checked: !data[idx].checked},
-            ...data.filter((val, index) => index != idx)
-        ]);
-    };
 
     return (
         <>

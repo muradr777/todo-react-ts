@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 // Context API
-import LocaleContext from './LocaleContext';
+import ListContext from './ListContext';
 
 // Lib-Components
 import { Container, Content } from 'rsuite';
@@ -13,7 +13,6 @@ import Foot from './components/Foot';
 import TodoList from './components/TodoList';
 
 const App = () => {
-  const [inputVal, setInputVal] = useState<string>('');
   const [data, setData] = useState<{id: number, title: string, checked: boolean}[]>([
     {'id': 0, 'title': 'Roses are red', 'checked': false},
     {'id': 1, 'title': 'Violets are blue', 'checked': true},
@@ -31,18 +30,6 @@ const App = () => {
     return maxID > 0 ? maxID+1 : 0;
   }
 
-  const handleInput = (value: string) => setInputVal(value);
-
-  const handleSubmit = () => {
-    if(inputVal.length !== 0)
-        setData([
-            ...data,
-            { 'id': generateId(), 'title': inputVal, 'checked': false },
-        ])
-    
-    setInputVal('');
-  };
-
   return (
     <div className="App">
       <Container>
@@ -51,9 +38,9 @@ const App = () => {
         <Content className='content'>
           <div className='wrapper'>
             <h1 className='list-title'>Todo List</h1>
-            <LocaleContext.Provider value={data}>
+            <ListContext.Provider value={{ data, setData }}>
               <TodoList />
-            </LocaleContext.Provider>
+            </ListContext.Provider>
           </div>
         </Content>
         

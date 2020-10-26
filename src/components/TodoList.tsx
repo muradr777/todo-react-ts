@@ -53,9 +53,9 @@ const TodoList = () => {
             </Form>
             
             <List className='list-body' hover>
-                <ListItems data={data} handleClick={handleCheck} checked={false} />
+                <ListItems checked={false} />
                 <Divider>DONE</Divider>
-                <ListItems data={data} handleClick={handleCheck} checked={true} />
+                <ListItems checked={true} />
             </List>
         </>
     );

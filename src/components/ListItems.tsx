@@ -3,15 +3,15 @@ import { List, Checkbox } from 'rsuite';
 
 import LocaleContext from '../LocaleContext';
 
-const ListItems = ({data, handleClick, checked}: any) => {
+const ListItems = ({handleClick, checked}: any) => {
     let classList = 'list-item' + (checked ? ' done' : '');
     
     return (
         <LocaleContext.Consumer>
-            {() => data.map((item: any, index: number) => (
+            {(data: any) => data.map((item: any, index: number) => (
                 checked === item.checked ? (
                     <List.Item className={classList} key={item.id} index={item.id}>
-                        <Checkbox onChange={() => handleClick(index)} defaultChecked={checked}>{item.title}</Checkbox>
+                        {<Checkbox onChange={() => handleClick(index)} defaultChecked={checked}>{item.title}</Checkbox>}
                     </List.Item>
                 ) : ''
             ))}

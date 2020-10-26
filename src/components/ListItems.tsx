@@ -15,7 +15,8 @@ const ListItems = ({checked}: any) => {
         ]);
     };
 
-    const deleteListItem = () => {};
+    const deleteListItem = (id: number) : void => 
+        setData([...data.filter((val, index) => index != id)]);
 
     return (
         <ListContext.Consumer>
@@ -24,7 +25,7 @@ const ListItems = ({checked}: any) => {
                         <List.Item className={classList} key={item.id} index={item.id}>
                             <FlexboxGrid align='middle' justify='space-between'>
                                 <Checkbox onChange={() => handleCheck(index)} defaultChecked={checked}>{item.title}</Checkbox>
-                                <IconButton size='xs' icon={<Icon icon='close' />}/>
+                                <IconButton size='xs' onClick={() => deleteListItem(index)} icon={<Icon icon='close' />}/>
                             </FlexboxGrid>
                         </List.Item>                    
                 ) : ''

@@ -10,7 +10,7 @@ import ListItems from './ListItems';
 import ListContext from '../ListContext';
 
 const TodoList = () => {
-    const { data, setData } = useContext(ListContext);
+    const { data } = useContext(ListContext);
 
     const generateId = () : number => {
         let maxID = 0;

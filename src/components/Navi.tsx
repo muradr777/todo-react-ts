@@ -7,7 +7,7 @@ export default function Navi() {
         <Header>
         <Navbar appearance="inverse">
           <Navbar.Header>
-            <a className="navbar-brand logo">TODOAPPP</a>
+            <a href='/' className="navbar-brand logo">TODOAPPP</a>
           </Navbar.Header>
           <Navbar.Body>
             <Nav>

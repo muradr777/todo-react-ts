@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 // RSuite Components
-import { Form, InputGroup, Input, Icon, List, Divider } from 'rsuite';
+import { List, Divider } from 'rsuite';
 
 // Custom Components
 import FormItem from './FormItem';
@@ -15,9 +15,7 @@ const TodoList = () => {
     const generateId = () : number => {
         let maxID = 0;
     
-        data.map(item => {
-            maxID = item.id > maxID ? item.id : maxID;
-        })
+        data.map(item => maxID = item.id > maxID ? item.id : maxID);
 
         return maxID+1;
     }

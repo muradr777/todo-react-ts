@@ -20,16 +20,6 @@ const App = () => {
     {'id': 3, 'title': 'And so are you', 'checked': true}
   ]);
 
-  const generateId = () : number => {
-    let maxID = 0;
-
-    data.map(item => {
-        maxID = item.id > maxID ? item.id : maxID;
-    })
-
-    return maxID > 0 ? maxID+1 : 0;
-  }
-
   return (
     <div className="App">
       <Container>

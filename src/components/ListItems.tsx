@@ -11,12 +11,12 @@ const ListItems = ({checked}: any) => {
     const handleCheck = (idx: number) : void => {
         setData([
             {id: data[idx].id, title: data[idx].title, checked: !data[idx].checked},
-            ...data.filter((val, index) => index != idx)
+            ...data.filter((val, index) => index !== idx)
         ]);
     };
 
     const deleteListItem = (id: number) : void => 
-        setData([...data.filter((val, index) => index != id)]);
+        setData([...data.filter((val, index) => index !== id)]);
 
     return (
         <ListContext.Consumer>

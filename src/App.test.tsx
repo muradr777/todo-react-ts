@@ -1,19 +1,20 @@
 // __tests__/fetch.test.js
 import React from 'react';
-import TodoList from './components/TodoList';
-import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import { debug } from 'console';
+import App from './App';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {debug} from 'console';
 
-afterEach(cleanup);
 
-test('Delete selected todo', async () => {
-  const { getByTestId, debug } = render( <TodoList /> );
 
-  const deleteButton = getByTestId('delete-button');
+test('Add new todo', async () => {
+    let todoContent = 'this is test todo';
 
-  fireEvent.click(deleteButton);
+    const { getByText, getByTestId, getByPlaceholderText, debug } = render(<App />);
 
-  // await waitFor(() => )
-  debug();
+    userEvent.type(getByPlaceholderText('Please enter the note'), todoContent);
+
+    fireEvent.submit(getByTestId('input-form'));
+    
+    await waitFor(() => expect(getByText(todoContent)).toBeDefined());
 })

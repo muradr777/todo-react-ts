@@ -3,21 +3,20 @@ import { List, Checkbox, FlexboxGrid, Icon, IconButton } from 'rsuite';
 
 import ListContext from '../ListContext';
 
-const ListItems = ({checked}: any) => {
-    let classList = 'list-item' + (checked ? ' done' : '');
-
+const ListItem = ({checked}: any) => {
     const {data, setData} = useContext( ListContext );
     
-    const handleCheck = (idx: number) : void => {
+    const handleCheck = (idx: number) : void =>
         setData([
             {id: data[idx].id, title: data[idx].title, checked: !data[idx].checked},
             ...data.filter((val, index) => index !== idx)
         ]);
-    };
 
     const deleteListItem = (id: number) : void => 
         setData([...data.filter((val, index) => index !== id)]);
 
+    let classList = 'list-item' + (checked ? ' done' : '');
+    
     return (
         <ListContext.Consumer>
             {({data}: any) => data.map((item: any, index: number) => (
@@ -34,4 +33,4 @@ const ListItems = ({checked}: any) => {
     )
 }
 
-export default ListItems;
+export default ListItem;

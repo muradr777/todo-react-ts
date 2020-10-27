@@ -3,9 +3,8 @@ import { Form, InputGroup, Input } from 'rsuite';
 
 import ListContext from '../ListContext';
 
-const FormItem = ({generateId}: any) => {
+const InputForm = ({generateId}: any) => {
     const {data, setData} = useContext( ListContext );
-
     const [inputVal, setInputVal] = useState<string>('');
 
     const handleSubmit = () => {
@@ -21,7 +20,7 @@ const FormItem = ({generateId}: any) => {
     const handleInput = (value: string) => setInputVal(value);
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form data-testid='input-form' onSubmit={handleSubmit}>
             <InputGroup className='input--group'>
                 <Input onChange={handleInput} value={inputVal} placeholder='Please enter the note' />
             </InputGroup>
@@ -29,4 +28,4 @@ const FormItem = ({generateId}: any) => {
     )
 }
 
-export default FormItem;
+export default InputForm;
